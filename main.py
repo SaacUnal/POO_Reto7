@@ -1,4 +1,5 @@
-import restaurant.restaurant
+import restaurant.order as order
+import restaurant.payment as payment
 
 if __name__ == "__main__":
   # Elements

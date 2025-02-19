@@ -1,5 +1,3 @@
-# Menu ------------------------------------------------------------------------
-
 class MenuItem:
   def __init__(self, name: str, price: float, ingredients: list):
     self.name = name
