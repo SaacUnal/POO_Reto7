@@ -1,6 +1,11 @@
 # Absolute import = writing the whole path
 # Relative import = one dot is the same folder, two dots is the parent folder
-from .menu import *  
+# to make it work you have to use console - boring -
+# For relative imports to work, Python must be aware that the file that performs the import is part 
+# of the same package as the file it is trying to import. (Source: Reddit)
+# For example using "python -m restaurant.order"
+
+from .menu import *
 
 class Order():
   def __init__(self, items: list):
@@ -22,12 +27,12 @@ class Order():
     return order
 
   def item_discount(self, item):
-    price = item.get_price() 
+    price = item.total_price() 
     match item:
-      case isinstance(item, NonAlcoholicBeverage):
+      case NonAlcoholicBeverage():
         price *= 0.9
         return price
-      case isinstance(item, Pastrie):
+      case Pastries():
         price *= 0.7
         return price
       case _:
