@@ -1,13 +1,10 @@
 class PaymentMethod:
-  def __init__(self):
-    raise NotImplementedError
 
   def pay(self, amount):
     raise NotImplementedError
 
 class Card(PaymentMethod):
   def __init__(self, number, cvv, funds):
-    super().__init__()
     self.__number = number
     self.__cvv = cvv
     self.__funds = funds 
@@ -27,7 +24,6 @@ class Card(PaymentMethod):
 
 class Cash(PaymentMethod):
   def __init__(self, delivered_amount):
-    super().__init__()
     self.__delivered_amount = delivered_amount
 
   def get_delivered_amount(self):

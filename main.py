@@ -1,3 +1,4 @@
+# Importing each module cause its easier writing in main - dont need to write something like menu.Appetizer
 from restaurant.menu import *
 from restaurant.order import Order
 from restaurant.payment import *
