@@ -1,36 +1,41 @@
 class PaymentMethod:
   def __init__(self):
-    pass
+    raise NotImplementedError
 
   def pay(self, amount):
     raise NotImplementedError
 
 class Card(PaymentMethod):
-  def __init__(self, numero, cvv, funds):
+  def __init__(self, number, cvv, funds):
     super().__init__()
-    self.numero = numero
-    self.cvv = cvv
+    self.__number = number
+    self.__cvv = cvv
+    self.__funds = funds 
 
-    '''
-    Esto seria si la clase fuera usada por el banco y el restaurante solo la
-    llama, en otro caso no deberia saber cuanto saldo tiene.
-    '''
-
-    self.funds = funds 
-
+  def get_number(self):
+    return self.__number
+  
+  def get_funds(self):
+    return self.__funds
+  
   def pay(self, amount):
-    if self.funds >= amount:
-      print(f"Paying {amount} with card ending in: ***{self.numero[-4:]}")
+    funds = self.get_funds()
+    if funds >= amount:
+      print(f"Paying {amount} with card ending in: ***{self.get_number()[-4:]}")
     else:
-      print(f"Insufficient funds. Amount needed: {amount - self.funds}")
+      print(f"Insufficient funds. Amount needed: {amount - funds}")
 
 class Cash(PaymentMethod):
   def __init__(self, delivered_amount):
     super().__init__()
-    self.delivered_amount = delivered_amount
+    self.__delivered_amount = delivered_amount
 
+  def get_delivered_amount(self):
+    return self.__delivered_amount
+  
   def pay(self, amount):
-    if self.delivered_amount >= amount:
-      print(f"Payment successfull. Change: {self.delivered_amount - amount}")
+    delivered_amount = self.get_delivered_amount()
+    if delivered_amount >= amount:
+      print(f"Payment successfull. Change: {delivered_amount - amount}")
     else:
-      print(f"Insufficient cash. Amount needed: {amount - self.delivered_amount}")
+      print(f"Insufficient cash. Amount needed: {amount - delivered_amount}")
