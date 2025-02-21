@@ -1,5 +1,4 @@
 class PaymentMethod:
-
   def pay(self, amount):
     raise NotImplementedError
 
